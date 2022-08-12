@@ -29,4 +29,4 @@ jobs:
           binary_name: "${{ matrix.executable }}"
           md5sum: false
           extra_files: LICENSE README.md
-          ldflags: "-X 'github.com/b3scale/b3scale/pkg/config.Version=${{ env.GITHUB_REF_NAME }}' -X 'github.com/b3scale/b3scale/pkg/config.Build=${{ env.GITHUB_SHA }}'"
+          ldflags: "-X 'github.com/b3scale/b3scale/pkg/config.Version=${{ github.ref_name }}' -X 'github.com/b3scale/b3scale/pkg/config.Build=${{ github.sha }}'"
