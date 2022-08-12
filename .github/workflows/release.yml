@@ -25,4 +25,4 @@ jobs:
           md5sum: false
           extra_files: LICENSE README.md
           build_flags: "-buildmode=pie"
-          ldflags: "-X github.com/b3scale/b3scale/pkg/config.Version=${{ env.GITHUB_REF_NAME }} -X github.com/b3scale/b3scale/pkg/config.Build=${{ env.GITHUB_SHA }} -extldflags '-static'"
+          ldflags: "-X github.com/b3scale/b3scale/pkg/config.Version=$GITHUB_REF_NAME -X github.com/b3scale/b3scale/pkg/config.Build=$GITHUB_SHA -extldflags \"-static\""
