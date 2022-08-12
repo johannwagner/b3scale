@@ -6,9 +6,14 @@ jobs:
   release:
     strategy:
       matrix:
-        os: [ linux, darwin ]
+        os: [ linux, darwin, windows ]
         arch: [ arm64, amd64 ]
         executable: [ b3scalectl, b3scaled, b3scalenoded ]
+        exclude:
+          - os: windows
+            executable: b3scaled
+          - os: windows
+            executable: b3scalenoded
     name: release linux/amd64
     runs-on: ubuntu-latest
     steps:
@@ -24,5 +29,3 @@ jobs:
           binary_name: "${{ matrix.executable }}"
           md5sum: false
           extra_files: LICENSE README.md
-          build_flags: "-buildmode=pie"
-          ldflags: "-X github.com/b3scale/b3scale/pkg/config.Version=$GITHUB_REF_NAME -X github.com/b3scale/b3scale/pkg/config.Build=$GITHUB_SHA -extldflags \"-static\""
