@@ -16,13 +16,13 @@ jobs:
       - uses: wangyoucao577/go-release-action@v1.30
         env:
           CGO_ENABLED: "0"
-
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           goos: ${{ matrix.os }}
           goarch: ${{ matrix.arch }}
           project_path: "./cmd/${{ matrix.executable }}"
-          binary_name: "${{ matrix.executable }}-${{ matrix.os }}-${{ matrix.arch }}"
+          binary_name: "${{ matrix.executable }}"
+          md5sum: false
           extra_files: LICENSE README.md
           build_flags: "-buildmode=pie"
-          ld_flags: "-X github.com/b3scale/b3scale/pkg/config.Version=${{ env.GITHUB_REF_NAME }} -X github.com/b3scale/b3scale/pkg/config.Build=${{ env.GITHUB_SHA }} -extldflags '-static'"
+          ldflags: "-X github.com/b3scale/b3scale/pkg/config.Version=${{ env.GITHUB_REF_NAME }} -X github.com/b3scale/b3scale/pkg/config.Build=${{ env.GITHUB_SHA }} -extldflags '-static'"
